@@ -17,3 +17,5 @@ Imports:
     utils
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+URL: https://github.com/imaddowzimet/findretractions
+BugReports: https://github.com/imaddowzimet/findretractions/issues

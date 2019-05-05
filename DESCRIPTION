@@ -1,0 +1,19 @@
+Package: findretractions
+Title: Check for Retractions, Erratums, and Expressions of Concerns for Articles Cited in Bibliographies
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Isaac",
+           family = "Maddow-Zimet",
+           role = c("aut", "cre"),
+           email = "imaddowzimet@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0002-6959-1684"))
+Description: This package takes a .bib file (exported from Zotero or another reference management package), and checks all of the articles within it against PubMed to check for retraction notices, erratums or expressions of concern. Note that PubMed does not have records for all articles in the scientific literature, and may not have all associated retraction notices either; this is just a package to check quickly for obvious problems.  
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    RISmed,
+    RefManageR,
+    utils
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1

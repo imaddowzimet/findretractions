@@ -21,7 +21,18 @@ check.bib <- function(bibfile) {
   for(i in 1:length(bibdataclean)) {
 
     article <- bibdataclean[i]
-    anynotice <- check.pubmed(article)
+    anynotice <- tryCatch(check.pubmed(article),
+                          warning = function(e) {
+                            closeAllConnections()
+                            Sys.sleep(1)
+                            check.pubmed(article)
+                          },
+                          error = function(e) {
+                            closeAllConnections()
+                            Sys.sleep(1)
+                            check.pubmed(article)
+                          }
+    )
     if (length(anynotice)>0) {
 
       issues[num] <- anynotice

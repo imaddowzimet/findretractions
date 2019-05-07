@@ -18,7 +18,7 @@ check.pubmed <- function(articlename) {
   search_query <- RISmed::EUtilsSummary(search_topic, retmax=10)
   records      <- RISmed::EUtilsGet(search_query)
   pubmed_data  <- as.vector(RISmed::PublicationType(records))
-  retracted    <- grepl("Retraction of Publication", pubmed_data)
+  retracted    <- grepl("Retraction of Publication|Retracted Publication", pubmed_data)
   erratum      <- grepl("Published Erratum", pubmed_data)
   concern      <- grepl("Expression of Concern", pubmed_data)
   issues       <- list()

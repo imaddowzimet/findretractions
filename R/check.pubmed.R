@@ -15,7 +15,7 @@
 check.pubmed <- function(articlename) {
 
   search_topic <- articlename
-  search_query <- RISmed::EUtilsSummary(search_topic, retmax=10)
+  search_query <- RISmed::EUtilsSummary(search_topic, retmax=20)
   records      <- RISmed::EUtilsGet(search_query)
   pubmed_data  <- as.vector(RISmed::PublicationType(records))
   retracted    <- grepl("Retraction of Publication|Retracted Publication", pubmed_data)

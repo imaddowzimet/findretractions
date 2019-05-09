@@ -27,12 +27,12 @@ check.pubmed <- function(articlename) {
     issues[num] <- paste("Check: ", search_topic, ". It may have been retracted", sep="")
     num <- num + 1
   }
-  if (sum(erratum) >= 1) {
-    issues[num] <- paste("Check: ", search_topic, ". There may be an associated erratum", sep="")
-    num <- num + 1
-  }
   if (sum(concern) >= 1) {
     issues[num] <- paste("Check: ", search_topic, ". There may be an associated expression of concern", sep="")
+    num <- num + 1
+  }
+  if (sum(erratum) >= 1) {
+    issues[num] <- paste("Check: ", search_topic, ". There may be an associated erratum", sep="")
     num <- num + 1
   }
   return(issues)

@@ -21,7 +21,7 @@ You can install the released version of findretractions using:
 devtools::install_github("imaddowzimet/findretractions")
 ```
 
-\#\#How to use it
+## How to use it
 
 `check.bib()` is the main function in the package. It takes as an input
 any BibTex file (.bib); .bib files can be exported from almost every

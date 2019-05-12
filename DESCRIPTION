@@ -1,6 +1,6 @@
 Package: findretractions
 Title: Check for Retractions, Erratums, and Expressions of Concerns for Articles Cited in Bibliographies
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Isaac",
            family = "Maddow-Zimet",

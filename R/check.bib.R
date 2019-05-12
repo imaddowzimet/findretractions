@@ -3,6 +3,7 @@
 #' `check.bib` searches for all articles from a .bib file on Pubmed, and returns any associated retractions, erratums or expressions of concern.
 #'
 #' @param bibfile File path to .bib file
+#' @param checkwith Source to check against. Options are "crossref", "pubmed" or "both"
 #' @return Returns a list of warnings, if any articles in .bib file have any associated retractions, erratums or expressions of concern. If it does not, returns an empty list.
 #' @export
 #'

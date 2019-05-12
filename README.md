@@ -11,9 +11,9 @@
 
 The `findretractions` package is a simple tool to help see if papers you
 have cited have associated retraction notices, erratums or expressions
-of concern. Currently, it can only find records on PubMed (using the
-`RISmed` package by Stephanie Kovalchik); future versions may expand to
-other databases as well.
+of concern. Currently, it can only find records on PubMed and CrossRef
+(using the `RISmed` and `rcrossref` packages); future versions may
+expand to other databases as well.
 
 You can install the released version of findretractions using:
 
@@ -37,17 +37,19 @@ Then just run `check.bib` with the link to the relevant file:
 
 ``` r
 library(findretractions)
-check.bib("Misc/My Library.bib")
-#> [1] "Warning: checking references now; expect a wait time of approximately 6 seconds"
+check.bib("Misc/My_Library.bib")
+#> [1] "Warning: checking references now; expect a wait time of approximately 7.5 seconds"
 #> 
   |                                                                       
   |                                                                 |   0%
   |                                                                       
-  |================                                                 |  25%
+  |=============                                                    |  20%
   |                                                                       
-  |================================                                 |  50%
+  |==========================                                       |  40%
   |                                                                       
-  |=================================================                |  75%
+  |=======================================                          |  60%
+  |                                                                       
+  |====================================================             |  80%
   |                                                                       
   |=================================================================| 100%
 #> [[1]]
@@ -61,18 +63,18 @@ check.bib("Misc/My Library.bib")
 ```
 
 The function checks the references one by one, and is careful to not
-overload PubMed with too many requests, so it may take some time to run.
-It returns a list of any flagged articles, or an empty list if it hasn’t
-found anything.
+overload PubMed or Crossref with too many requests, so it may take some
+time to run. It returns a list of any flagged articles, or an empty list
+if it hasn’t found anything.
 
 **IMPORTANT**: This function is mean to flag *possible* retractions,
 erratums or expressions of concern. Any articles it flags should be
-checked on PubMed or the publisher’s website directly, so that you can
-find the content of the notice, and be aware that it will not flag any
-notice not indexed on PubMed (and there are documented lags in when
-retraction notices get posted to PubMed; see [Decullier E et
-al., 2014](https://www.ncbi.nlm.nih.gov/pubmed/?term=What+time-lag+for+a+retraction+search+on+PubMed%3F)).
-Right now, the [Retraction Watch
+checked on PubMed, CrossRef and the publisher’s website directly, so
+that you can find the content of the notice, and be aware that it will
+not flag any notice not indexed on PubMed (and there are documented lags
+in when retraction notices get posted to PubMed; see [Decullier E et
+al., 2014](https://www.ncbi.nlm.nih.gov/pubmed/?term=What+time-lag+for+a+retraction+search+on+PubMed%3F);
+there are similar issues for CrossRef). Right now, the [Retraction Watch
 Database](https://retractionwatch.com/2018/10/25/were-officially-launching-our-database-today-heres-what-you-need-to-know/)
 has the most up to date listings of retracted articles; unfortunately,
 as it doesn’t yet have an API, articles need to be searched for manually

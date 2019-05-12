@@ -4,10 +4,12 @@
 \alias{check.bib}
 \title{Check Bibliography}
 \usage{
-check.bib(bibfile)
+check.bib(bibfile, checkwith = "both")
 }
 \arguments{
 \item{bibfile}{File path to .bib file}
+
+\item{checkwith}{Source to check against. Options are "crossref", "pubmed" or "both"}
 }
 \value{
 Returns a list of warnings, if any articles in .bib file have any associated retractions, erratums or expressions of concern. If it does not, returns an empty list.

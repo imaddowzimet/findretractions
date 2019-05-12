@@ -21,9 +21,9 @@ check.pubmed <- function(articlename) {
     warning(paste("No record found for", articlename, "in PubMed", sep=" "))
   }
   pubmed_data  <- as.vector(RISmed::PublicationType(records))
-  retracted    <- grepl("Retraction of Publication|Retracted Publication", pubmed_data)
-  erratum      <- grepl("Published Erratum", pubmed_data)
-  concern      <- grepl("Expression of Concern", pubmed_data)
+  retracted    <- grepl("Retraction of Publication|Retracted Publication", pubmed_data, ignore.case = T)
+  erratum      <- grepl("Published Erratum", pubmed_data, ignore.case = T)
+  concern      <- grepl("Expression of Concern", pubmed_data, ignore.case = T)
   issues       <- list()
   num          <- 1
   if (sum(retracted) >= 1) {

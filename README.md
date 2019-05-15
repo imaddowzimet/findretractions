@@ -31,7 +31,7 @@ export, select File\>Export Library…(or if it’s a collection, right
 click, and select Export Collection…), and choose the format “BibTex” in
 the pop-up window that appears:
 
-![](Misc/zoteroexport.png)
+![](https://raw.githubusercontent.com/imaddowzimet/findretractions/master/misc/zoteroexport.png)
 
 Then just run `check.bib` with the link to the relevant file:
 

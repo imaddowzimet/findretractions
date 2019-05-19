@@ -20,26 +20,28 @@ check.bib <- function(bibfile, checkwith = "both") {
 
   # Read BibTex file, extract titles, and loop over them
   bibdata <- RefManageR::ReadBib(bibfile, check = F)
-  bibdataclean <- gsub("[{}]", "",bibdata$title)
+  bibdataclean <- gsub("[{}]", "", bibdata$title)
   issues <- list()
-  num    <- 1
-  for(i in 1:length(bibdataclean)) {
+  num <- 1
+  for (i in 1:length(bibdataclean)) {
     article <- bibdataclean[i]
-    if (i==1) {start_time <- Sys.time()}
+    if (i == 1) {
+      start_time <- Sys.time()
+    }
     # PubMed only
     if (checkwith == "pubmed") {
       anynotice <- tryCatch(check.pubmed(article),
-                            warning = function(e) {
-                              closeAllConnections()
-                              Sys.sleep(1)
-                              check.pubmed(article)
-                            },
-                            error = function(e) {
-                              closeAllConnections()
-                              Sys.sleep(1)
-                              check.pubmed(article)
-                            }
-                            )
+        warning = function(e) {
+          closeAllConnections()
+          Sys.sleep(1)
+          check.pubmed(article)
+        },
+        error = function(e) {
+          closeAllConnections()
+          Sys.sleep(1)
+          check.pubmed(article)
+        }
+      )
     }
 
     # CrossRef only
@@ -50,41 +52,53 @@ check.bib <- function(bibfile, checkwith = "both") {
     # Both
     if (checkwith == "both") {
       anynoticecrossref <- check.crossref(article)
-      anynoticepubmed   <- tryCatch(check.pubmed(article),
-                            warning = function(e) {
-                              closeAllConnections()
-                              Sys.sleep(1)
-                              check.pubmed(article)
-                            },
-                            error = function(e) {
-                              closeAllConnections()
-                              Sys.sleep(1)
-                              check.pubmed(article)
-                            }
+      anynoticepubmed <- tryCatch(check.pubmed(article),
+        warning = function(e) {
+          closeAllConnections()
+          Sys.sleep(1)
+          check.pubmed(article)
+        },
+        error = function(e) {
+          closeAllConnections()
+          Sys.sleep(1)
+          check.pubmed(article)
+        }
       )
-      if (length(anynoticecrossref) > 0) {anynotice <- anynoticecrossref}
-      if (length(anynoticepubmed) > 0)   {anynotice <- anynoticepubmed}
-      if (length(anynoticepubmed) > 0 & length(anynoticecrossref) > 0) {anynotice <- anynoticecrossref} # tie goes to crossref, since that will always be a retraction
-      if (length(anynoticepubmed) == 0 & length(anynoticecrossref) == 0)   {anynotice <- list()}
+      if (length(anynoticecrossref) > 0) {
+        anynotice <- anynoticecrossref
+      }
+      if (length(anynoticepubmed) > 0) {
+        anynotice <- anynoticepubmed
+      }
+      if (length(anynoticepubmed) > 0 & length(anynoticecrossref) > 0) {
+        anynotice <- anynoticecrossref
+      } # tie goes to crossref, since that will always be a retraction
+      if (length(anynoticepubmed) == 0 & length(anynoticecrossref) == 0) {
+        anynotice <- list()
+      }
     }
 
     # Start progress bar first time loop runs
-    if (i==1) {end_time <- Sys.time()}
-    if (i==1) {timing <-  (round(end_time-start_time)*length(bibdataclean)*1.3) }
-    if (i==1) {timing <-  print(paste("Warning: checking references now; expect a wait time of approximately", timing, "seconds"))}
-    if (i==1) {pg <- txtProgressBar(min = 0, max = length(bibdataclean), style = 3)}
+    if (i == 1) {
+      end_time <- Sys.time()
+    }
+    if (i == 1) {
+      timing <- (round(end_time - start_time) * length(bibdataclean) * 1.3)
+    }
+    if (i == 1) {
+      timing <- print(paste("Warning: checking references now; expect a wait time of approximately", timing, "seconds"))
+    }
+    if (i == 1) {
+      pg <- txtProgressBar(min = 0, max = length(bibdataclean), style = 3)
+    }
 
     # Store relevant results
     if (length(anynotice) > 0) {
-
       issues[num] <- anynotice
       num <- num + 1
     }
     Sys.sleep(.5)
     utils::setTxtProgressBar(pg, i)
-
   }
   return(issues)
 }
-
-

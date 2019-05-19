@@ -19,5 +19,4 @@ Returns a list of warnings, if article has any associated retractions.
 
 check.crossref("Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children")
 # (returns warning that article may have been retracted)
-
 }

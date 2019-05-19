@@ -32,8 +32,8 @@ testthat::test_that("does not flag retraction", {
 
 
 
-
 context("check.bib")
+file.name <- system.file("Bib", "My_Library.bib", package="findretractions")
 
 result <- list()
 result[[1]] <- "Check: Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children. It may have been retracted"
@@ -42,7 +42,7 @@ result[[3]] <- "Check: Biological fabrication of cellulose fibers with tailored 
 result[[4]] <- "Check: Structural Stigma and All-Cause Mortality in Sexual Minority Populations. It may have been retracted"
 testthat::test_that("my_library test", {
   testthat::expect_equal(
-    check.bib(here::here("misc", "My_Library.bib")),
+    check.bib(file.name),
     result
   )
 })

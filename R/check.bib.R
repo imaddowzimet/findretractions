@@ -28,7 +28,9 @@ check.bib <- function(bibfile, checkwith = "both") {
     if (i == 1) {
       start_time <- Sys.time()
     }
-    # PubMed only
+    # PubMed only (note that because it's easy to overwhelm PubMed
+    # with requests, if `check.pubmed` throws an error,
+    # the function waits a second and tries again.
     if (checkwith == "pubmed") {
       anynotice <- tryCatch(check.pubmed(article),
         warning = function(e) {
@@ -71,14 +73,14 @@ check.bib <- function(bibfile, checkwith = "both") {
         anynotice <- anynoticepubmed
       }
       if (length(anynoticepubmed) > 0 & length(anynoticecrossref) > 0) {
-        anynotice <- anynoticecrossref
-      } # tie goes to crossref, since that will always be a retraction
+        anynotice <- anynoticecrossref # (tie goes to crossref, since that will always be a retraction)
+      }
       if (length(anynoticepubmed) == 0 & length(anynoticecrossref) == 0) {
         anynotice <- list()
       }
     }
 
-    # Start progress bar first time loop runs
+    # Start progress bar first time loop runs, after checking for timing
     if (i == 1) {
       end_time <- Sys.time()
     }

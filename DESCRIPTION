@@ -11,6 +11,7 @@ Description: This package takes a .bib file (exported from Zotero or another ref
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Remotes:  git::https://github.com/ropensci/rcrossref.git@master 
 Imports: 
     RISmed,
     RefManageR,

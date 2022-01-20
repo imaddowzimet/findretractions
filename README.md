@@ -78,4 +78,10 @@ there are similar issues for CrossRef). Right now, the [Retraction Watch
 Database](https://retractionwatch.com/2018/10/25/were-officially-launching-our-database-today-heres-what-you-need-to-know/)
 has the most up to date listings of retracted articles; unfortunately,
 as it doesn’t yet have an API, articles need to be searched for manually
-on their site.
+on their site.  
+
+Note: If you encounter an error that states something like ""application/json;charset=UTF-8" is not TRUE", you may have an older version of the `rcrossref` package, which seems to have a small bug. To fix this, reinstall the development version of `rcrossref` from Github:
+
+``` r
+remotes::install_github("ropensci/rcrossref")
+```

@@ -43,10 +43,14 @@ check.bib("Misc/My_Library.bib")
 
 The function checks the references one by one, and is careful to not overload PubMed or Crossref with too many requests, so it may take some time to run. It returns a list of any flagged articles, or an empty list if it hasn't found anything. 
 
-**IMPORTANT**: This function is mean to flag *possible* retractions, erratums or expressions of concern. Any articles it flags should be checked on PubMed, CrossRef and the publisher's website directly, so that you can find the content of the notice, and be aware that it will not flag any notice not indexed on PubMed (and there are documented lags in when retraction notices get posted to PubMed; see [Decullier E et al., 2014](https://www.ncbi.nlm.nih.gov/pubmed/?term=What+time-lag+for+a+retraction+search+on+PubMed%3F); there are similar issues for CrossRef). Right now, the [Retraction Watch Database](https://retractionwatch.com/2018/10/25/were-officially-launching-our-database-today-heres-what-you-need-to-know/) has the most up to date listings of retracted articles; unfortunately, as it doesn't yet have an API, articles need to be searched for manually on their site. 
+**IMPORTANT**: This function is mean to flag *possible* retractions, erratums or expressions of concern. Any articles it flags should be checked on PubMed, CrossRef and the publisher's website directly, so that you can find the content of the notice, and be aware that it will not flag any notice not indexed on PubMed (and there are documented lags in when retraction notices get posted to PubMed; see [Decullier E et al., 2014](https://www.ncbi.nlm.nih.gov/pubmed/?term=What+time-lag+for+a+retraction+search+on+PubMed%3F); there are similar issues for CrossRef). Right now, the [Retraction Watch Database](https://retractionwatch.com/2018/10/25/were-officially-launching-our-database-today-heres-what-you-need-to-know/) has the most up to date listings of retracted articles; unfortunately, as it doesn't yet have an API, articles need to be searched for manually on their site.  
 
+Note: If you encounter an error that states something like ""application/json;charset=UTF-8" is not TRUE", you may have an older version of the `rcrossref` package, which seems to have a small bug. To fix this, reinstall the development version of `rcrossref` from Github:
 
-
+``` r
+remotes::install_github("ropensci/rcrossref")
+```
+  
 
 
 

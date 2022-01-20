@@ -1,6 +1,6 @@
 Package: findretractions
 Title: Check for Retractions, Erratums, and Expressions of Concerns for Articles Cited in Bibliographies
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: 
     person(given = "Isaac",
            family = "Maddow-Zimet",
@@ -15,9 +15,10 @@ Imports:
     RISmed,
     RefManageR,
     utils,
-    rcrossref,
+    rcrossref (>= 1.1.0.99),
     dplyr,
-    here
+    here,
+    bibtex
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 URL: https://github.com/imaddowzimet/findretractions

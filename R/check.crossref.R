@@ -19,7 +19,7 @@ check.crossref <- function(articlename) {
     warning(paste(articlename, "has the word 'retracted' or 'retraction' in the title, and will not be checked in CrossRef", sep = " "))
     return(issues)
   }
-  records <- rcrossref::cr_works(flq = c(`query.title` = articlename), select = c("title"))$data
+  records <- rcrossref::cr_works(flq = c(query.bibliographic = articlename), select = c("title"))$data
   matches <- grep(articlename, dplyr::pull(records), ignore.case = T)
   retracted <- grepl("Retracted|Retraction", records[matches, ], ignore.case = T)
   if (sum(retracted) >= 1) {

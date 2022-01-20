@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @importFrom utils txtProgressBar
+#' @import bibtex
 
 
 

@@ -14,13 +14,16 @@
 check.pubmed <- function(articlename) {
   search_topic <- articlename
   search_query <- RISmed::EUtilsSummary(search_topic, retmax = 20)
+  Sys.sleep(.5)
   records <- RISmed::EUtilsGet(search_query)
   if (length(records@PMID) == 0) {
     warning(paste("No record found for", articlename, "in PubMed", sep = " "))
   }
   pubmed_data <- as.vector(RISmed::PublicationType(records))
+  pubmed_title <- as.vector(RISmed::ArticleTitle(records))
   retracted <- grepl("Retraction of Publication|Retracted Publication", pubmed_data, ignore.case = T)
   erratum <- grepl("Published Erratum", pubmed_data, ignore.case = T)
+  erratum <- ifelse(sum(erratum) >= 1, erratum, grepl("^Erratum", pubmed_title, ignore.case = T))
   concern <- grepl("Expression of Concern", pubmed_data, ignore.case = T)
   issues <- list()
   num <- 1

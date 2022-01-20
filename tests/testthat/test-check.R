@@ -25,7 +25,7 @@ testthat::test_that("flags retraction", {
 
 testthat::test_that("does not flag retraction", {
   testthat::expect_equal(
-    check.pubmed("Changes in Adolescents' Receipt of Sex Education, 2006–2013"),
+    check.pubmed("Effect of Changes in Response Options on Reported Pregnancy Intentions: A Natural Experiment in the United States"),
     list()
   )
 })
